@@ -39,7 +39,7 @@ module ActiveModel
         valid_cpf_format = value.to_s.match(ELEVEN_DIGITS_REGEXP) || value.to_s.match(CPF_FORMAT_REGEXP)
 
         if (valid_cpf_format && Cpf.valid?(value))
-          format_cpf(record, attr_name, value)
+          format_cpf(record, attr_name, value) if options[:format] == true
         else
           add_error(record, attr_name)
         end
@@ -50,7 +50,7 @@ module ActiveModel
         valid_cnpj_format = value.to_s.match(FOURTEEN_DIGITS_REGEXP) || value.to_s.match(CNPJ_FORMAT_REGEXP)
 
         if (valid_cnpj_format && Cnpj.valid?(value))
-          format_cnpj(record, attr_name, value)
+          format_cnpj(record, attr_name, value) if options[:format] == true
         else
           add_error(record, attr_name)
         end
